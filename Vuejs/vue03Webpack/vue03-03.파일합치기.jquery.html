@@ -91,3 +91,12 @@
     </div>
   </body>
 </html>
+
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
+<script>
+  $('div[w3-include-header]').load('header.html');
+  $('div[w3-include-footer]').load('footer.html');
+  // 제이쿼리로 연결시 오픈 라이브서버로 실행 필요: 여러개의 쪼개진 파일을 하나로 모으기(=웹팩의 주요 기능)
+</script>

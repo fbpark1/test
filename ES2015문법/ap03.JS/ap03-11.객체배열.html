@@ -82,3 +82,95 @@
   </body>
 
 </html>
+
+<script>
+  // Object Arrary 대해서 학습한다.
+  // Object Arrary 생성
+
+  //   const objarray = [
+  //     { text: 'One', value: 'A', id: 'dfad3r' },
+  //     { text: 'Two', value: 'B', id: '35ffete' },
+  //     { text: 'Three', value: 'C', id: 'e66reag' },
+  //   ];
+  const objarray = [
+    { text: 'One', value: 'A', id: 'dfad3r' },
+    { text: 'Two', value: 'B', id: '35ffete' },
+    { text: 'Three', value: 'C', id: 'e66reag' },
+  ];
+  console.log(objarray);
+
+
+  // objarray 에 { text: 'Four', value: 'D' } 를 추가하시오.
+  const obj = { text: 'Four', value: 'D' };
+  objarray.push(obj);
+  console.log(objarray);
+  // obj.name = 'abc';
+  // console.log(objarray); // 참조타입이라 나중에 추가했어도 처음 로그에 abc가 보임
+  debugger;
+
+  // objarray 에서 filter 메서드를 사용하여 text의 값이 'One' 인 객체들을 찾고 찾은 결과를 console.log 로 출력하시오
+  const arrFilter = objarray.filter(function (value, index, array) {
+    console.log(value); //필터에서는 value 확인이 제일 중요
+    // value === { text: 'One', value: 'A'} 필터링 필요
+    debugger;
+
+    if (value.text === 'One') {
+      return true;
+    }
+    return false;
+  });
+  console.log(arrFilter);
+  console.log(objarray);
+  debugger;
+
+
+  // objarray 에서 filter 메서드를 사용하여 { text: 'Three', value: 'C' } 를 삭제하고 결과를 console.log 로 출력하시오
+  const arrDelete = objarray.filter(function (value, index, array) {
+    console.log(value);
+    // value === { text: 'Three', value: 'C' } 필터링 필요
+
+    if (value.text === 'Three') {
+      return false; // 조건에 해당되는것을 거짓으로=보여지는 내용에서 삭제
+    }
+    return true;
+  });
+  console.log(arrDelete);
+  console.log(objarray);
+  debugger;
+
+
+
+  // objarray 에서 map 메서드를 사용하여 no 프로퍼티 추가하시오
+  // 원 배열과 길이 같으면 map으로 복사, 줄어들 수 있으면 필터로 복사
+  // 맵과 필터는 반드시 사용되는 기능
+  //   [
+  //     { text: 'One', value: 'A', no: 0 },
+  //     { text: 'Two', value: 'B', no: 1 },
+  //     { text: 'Four', value: 'D', no: 2 },
+  //     ]
+  const arrMap = objarray.map(function (value, index, array) {
+    console.log(value);
+    debugger;
+    value.no = index;
+
+    return value;
+  });
+  console.log(arrMap);
+  console.log(objarray);
+
+
+
+  // objarray 에서 reduce 메서드를 사용하여 각 요소의 value 프로퍼티 를 합쳐서 하나의 문자열로 만드시오
+  // map을 이용하여 value 값만 들어있는 배열을 만들고 reduce를 이용하여 하나의 문자열로 만든다.
+
+  //     ABD 가 출력 (리듀스는 필수가능은 아님)
+  const result = objarray.reduce(function (pvalue, cvalue, index, array) {
+    console.log(pvalue, cvalue);
+    // cvalue === { text: 'One', value: 'A', no: 0 },
+    debugger;
+    return pvalue + cvalue.value;
+  }, ''); // 초기값 0 설정=최초실행 pvalue, 문자값일 경우 ''입력
+  console.log(result); //ABCD
+  debugger;
+
+</script>
