@@ -23,7 +23,7 @@
 
         Vue 라이프 사이클 updated 단계가 실행되게 하려면 어떻게 하면 되는가?
 
-        updated 단계는 화면의 일부분이 새로고침(렌더링)되는 것을 의미한다.
+        updated 단계는 화면의 일부분이 새로고침(렌더링)이 된 후에 실행된다.
 
         기능 추가
             1. 버튼을 만들고 클릭(click) 이벤트를 설정한다.
@@ -39,8 +39,67 @@
     <div id="app">
       {{ message }}
       <!-- 버튼 기능 추가-->
-
+      <button v-on:click="btnClick">Vue 버튼</button>
     </div>
 
   </body>
 </html>
+
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+
+<script>
+  new Vue({
+    /* edtmc^2w */
+    el: '#app',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      message: "Hello Vue.js!",
+    },
+    //template: ``,
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      btnClick(e) {
+        // console.log(e.target);
+        // this.$data.message = 'aaa' : 버튼 여러번 눌러도 값이 실제로 변경되지 않아 콘솔로그에 업데이티드 없음
+        this.$data.message = new Date().toLocaleTimeString(); // 버튼 누를떄마다 값 변경됨=updated 실행됨
+      }
+    },
+    components: {
+      /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
+      /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
+
+    },
+    computed: {
+      /* 자동처리 + 동기식. 변수명이 메서드 명이다. 메서드로 작성. return 필수.  data 와 공존 불가 */
+
+    },
+    watch: {
+      /* 자동처리 + 비동기식. data 에 등록된 프로퍼티(변수) 모니터링. 메서드로 작성. 매개변수 필수. 외부 api 호출을 위해서 사용 */
+
+    },
+    beforeCreated() {
+      console.log("beforeCreated");
+    },
+    created() {
+      console.log("created", this.$data.message); //css여부 관계없이 변수가 생성되면 찾아짐. 제이쿼리의 실행순서 문제점 해소?
+      debugger;
+    },
+    beforeMounted() {
+      console.log("beforeMounted");
+    },
+    mounted() {
+      console.log("mounted");
+      debugger;
+    },
+    beforeUpdated() {
+      console.log("beforeUpdated");
+    },
+    updated() {
+      console.log("updated");
+      debugger;
+    },
+  });
+
+</script>

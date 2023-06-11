@@ -1,3 +1,5 @@
+"use strict";
+
 /*
 
     ES2015의 const 와 let 에 대해서 알아본다.
@@ -25,3 +27,15 @@
     변수 중복 선언 불가
     변수 이름 충돌 불가
 */
+console.log(aa);
+var msg = 'global scope';
+if (true) {
+  var _msg = 'block scope';
+}
+function outer() {
+  var msg = 'function scope';
+  if (true) {
+    var msg = 'block scope';
+  }
+}
+var aa = 'hosting';
