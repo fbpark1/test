@@ -65,3 +65,49 @@
   </body>
 
 </html>
+
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+
+<script>
+  new Vue({
+    /* edtmc^2w */
+    el: '#app',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      //문제1
+      sum1: 0,
+      // 문제2
+      numInput: null,
+      sumInput: 0,
+      sum10: 0,
+    },
+    //template: ``,
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      // 문제1
+      clickBtn1(e) {
+        console.log(e.target);
+        this.$data.sum1 = this.$data.sum1 + 1; // sum1이 어디 소속인지 명확하게 표기
+      },
+      //문제2
+      clickBtnInput(e) {
+        console.log(e.target);
+        console.log(typeof this.$data.numInput); // 입력된 숫자=문자string으로 출력(계산x)
+
+        this.$data.sumInput = this.$data.sumInput + Number(this.$data.numInput);
+        console.log(typeof this.$data.numInput); // 숫자로 변환 Number();
+      },
+      clickBtn10(e) {
+        console.log(e.target);
+        const num = e.target.dataset.num; //dataset도 문자
+        this.$data.sum10 = this.$data.sum10 + Number(num);
+      }
+    },
+    // 이벤트 핸들러는 매우 많이 쓰이는 기능, 입력받은 데이터를 어떻게 전달할 것인가 + 형 변환까지 고려해야
+  });
+
+
+
+</script>

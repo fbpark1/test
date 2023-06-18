@@ -293,6 +293,7 @@
           v-on:keyup.esc="$emit('close')"
           v-if="showModal"
           v-on:close="showModal = false">
+          <!--$emit('close') 함수 emit을 문자 'close'를 받아서 실행-->
           <div class="modal-wrapper">
             <div class="modal-container">
               <div class="modal-header">
@@ -318,9 +319,11 @@
           tag="ul">
           <li v-for="(todoItem, index) in todoItems"
             v-bind:key="todoItem.id"
-            v-bind:class="checked(todoItem.done)"
+            v-bind:class="todoItem.done ? 'checked':null"
             v-bind:data-id="todoItem.id"
             v-on:click="doneToggle(todoItem.id)">
+            <!--v-bind:가 속성 아닌 함수 checked에 붙어있음-->
+            <!--todoItem.done인지 확인, 아니라면 checked에 null넣기-->
             <i class="checkBtn fas fa-check"
               aria-hidden="true"></i>
             {{ todoItem.todo }}
@@ -345,3 +348,121 @@
   </body>
 
 </html>
+
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+
+<script>
+  new Vue({
+    /* edtmc^2w */
+    el: '#app',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      newTodoItem: null,
+      showModal: false,
+      todoItems: [
+        { id: 1, todo: "영화보기", done: false },
+        { id: 2, todo: "주말 산책", done: true },
+        { id: 3, todo: "ES6 학습", done: false },
+        { id: 4, todo: "잠실 야구장", done: false }
+      ] // todoItems: [{ id, done, todo }]
+    },
+    //template: ``,
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      clearAll(e) {
+        debugger;
+        console.log(e.target);
+        this.$data.todoItems = []; // 배열의 모든 내용 지우기=빈 배열 대입하기
+      },
+
+      checked(done) {
+        debugger;
+        //v-bind:class="todoItem.done ? 'checked':null"
+        if (done)
+          return 'checked';
+
+        return null;
+      },
+
+      doneToggle(id) { //필터(변경 전 후 갯수 다름) 또는 맵(변경 전후 같음)
+        debugger;
+        //1.새로운 배열 만들기: const newarr정의
+        //2.this.$data.todoItems에 새로운 배열 map으로 할당하기
+        const newarr = this.$data.todoItems.map((value, index, array) => {
+          console.log(value);
+
+          if (value.id === id) {
+            value.done = !value.done;
+          }
+          return value; // return value필수!
+        }); // 화살표함수 끝
+        this.$data.todoItems = newarr; // 새로운 배열을 보여줌
+      },
+
+      removeTodo(id) {
+        debugger;
+        window.event.stopPropagation();
+        window.event.preventDefault();
+        //0.이벤트 버블링(자식-부모요소 계속 이벤트 걸림)을 막기 위해 html에서 v-on:click.stop(추가)="removeTodo"
+        //1.새로운 배열 필터(복사본) 만들기: const arrDelete정의
+        //2. value === id로 필터링 조건 확인
+        const arrDelete = this.$data.todoItems.filter((value, index, array) => {
+          console.log(value);
+
+          if (value.id === id) {
+            return false; // 조건에 해당되는것을 거짓으로=보여지는 화면에서 삭제
+          }
+          return true; // 해당되지 않으면 계속 참(화면에 보임)
+        });// 화살표함수 끝
+        this.$data.todoItems = arrDelete; // 새로운 배열을 보여줌
+      },
+
+      addTodo(e) {
+        console.log(e.target);
+        //0.빈 문자 입력시 추가되지 않고 모달창 뜨게 하기
+        //!this.$data.newTodoItem인 경우: null, undefined,''(공백)이 아닌것이라는 3가지 조건을 한번에 처리 가능
+        // showModal: true
+        if (!this.$data.newTodoItem || this.$data.newTodoItem.trim().legth <= 0) {
+          this.$data.showModal = !this.$data.showModal //반대 상태로 바꾸기(토글?)
+          return; // 따로 반환하는 값은 없음..
+        }
+
+        //1.map사용: todoItems에서 id값만 있는 배열 뽑아내기
+        const ids = this.$data.todoItems.map((value, index, array) => {
+          // value === {id, done, todo}
+          return value.id;
+        })
+
+        console.log(ids); // 결과 [1,2,3,4]
+        //2.reduce사용: ids 배열에서 최대값 찾기
+        const maxid = ids.reduce((pvalue, cvalue, index, array) => {
+          debugger;
+          if (pvalue > cvalue)
+            return pvalue;
+          return cvalue;
+        }, 0); // 숫자의 초기값으로 0 설정
+
+        //새로 추가할 객체
+        const newobj = [
+          {
+            id: maxid + 1,
+            todo: this.$data.newTodoItem,
+            done: false,
+          }
+        ];
+
+        //배열에 추가 (push는 브라우저마다 다르게 작동할 수 있으나 스프레드 연산자는 모두 동일)
+        // this.$data.todoItems.push(newobj);
+        this.$data.todoItems = [...this.$data.todoItems, newobj];
+
+        //입력값 newTodoItem초기화
+        this.$data.newTodoItem = null;
+
+
+      },
+    },
+  });
+
+</script>

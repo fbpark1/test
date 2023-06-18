@@ -166,7 +166,7 @@
   //     ABD 가 출력 (리듀스는 필수가능은 아님)
   const result = objarray.reduce(function (pvalue, cvalue, index, array) {
     console.log(pvalue, cvalue);
-    // cvalue === { text: 'One', value: 'A', no: 0 },
+    // value === { text: 'One', value: 'A', no: 0 },
     debugger;
     return pvalue + cvalue.value;
   }, ''); // 초기값 0 설정=최초실행 pvalue, 문자값일 경우 ''입력

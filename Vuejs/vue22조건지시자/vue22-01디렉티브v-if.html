@@ -106,3 +106,63 @@
   </body>
 
 </html>
+
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
+
+<script>
+  new Vue({
+    /* edtmc^2w */
+    el: '#app1',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      awesome: true, // null === false === undefined (if변수라서 true/false 가능)
+    },
+  });
+
+  new Vue({
+    /* edtmc^2w */
+    el: '#app2',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      awesome: false,
+    },
+  });
+
+  new Vue({
+    /* edtmc^2w */
+    el: '#app3',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      awesome: true,
+    },
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      clickBind(e) {
+        console.log(e.target);
+        if (this.awesome === true) {
+          this.awesome = false;
+        } else {
+          this.awesome = true;
+        }
+      }
+    },
+  });
+
+  new Vue({
+    /* edtmc^2w */
+    el: '#app4',
+    data: {
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      type: 0,
+    },
+    methods: {
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      clickBind(e) {
+        this.$data.type = this.$data.type + 1;
+        console.log(this.$data.type);
+      }
+    },
+  });
+</script>
