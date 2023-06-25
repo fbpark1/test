@@ -445,13 +445,11 @@
         }, 0); // 숫자의 초기값으로 0 설정
 
         //새로 추가할 객체
-        const newobj = [
-          {
+        const newobj =  {
             id: maxid + 1,
             todo: this.$data.newTodoItem,
             done: false,
           }
-        ];
 
         //배열에 추가 (push는 브라우저마다 다르게 작동할 수 있으나 스프레드 연산자는 모두 동일)
         // this.$data.todoItems.push(newobj);

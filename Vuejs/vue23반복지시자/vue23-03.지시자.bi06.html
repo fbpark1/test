@@ -117,13 +117,12 @@
         console.log(e.target);
         // this.$data.contacts.push({ name: '1', tel: '2', address: '3' });
         //배열에 추가할 내용: push 메서드, 스프레드 연산자
-        const obj = [
-          {
+        const obj = {
             name: this.$data.name,
             tel: this.$data.tel,
             address: this.$data.address,
           }
-        ];
+
         this.$data.contacts.push(obj); // 행 추가는 되는데 input에서 입력한 내용이 반영 안됨
 
         //입력된 값 초기화 기능

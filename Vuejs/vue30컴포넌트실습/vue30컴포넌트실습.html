@@ -356,12 +356,12 @@
           singleQuote: true /*문자열 리터럴로 " 대신 ' 을 사용 */,
           semi: true /* 문장 마지막에 ; 추가설정 */,
           useTabs: false /* 탭 대신 spacebar 를 사용 설정 */,
-          trailingComma: 'all',
+          trailingComma: 'all', /*객체 생성시 자동으로 콤마 추가*/
           proseWrap: 'always',
-          bracketSpacing: true,
+          bracketSpacing: true,/*배열 생성시 []사이에 공간 만들기*/
           jsxSingleQuote: false /*JSX 안에서는 " 을 사용 */,
           quoteProps: 'as-needed',
-          endOfLine: 'crlf',
+          endOfLine: 'crlf', /*OS마다 달라지는 입력 양식 통일 원할때*/
         };
 
 
@@ -547,8 +547,8 @@
     ##################################
     # 작업 폴더 및 파일 만들기
         $ mkdir -p src/components/vue3104
-        $ touch src/views/Vue3104View.vue
-        $ touch src/components/vue3104/Vue3104Counter.vue
+        $ touch src/views/Vue3104View.vue                       #컨테이너 컴포넌트
+        $ touch src/components/vue3104/Vue3104Counter.vue               #프레젠테이션 컴포넌트
 
     페이지 링크 만들기  ==> src/App.vue 수정
 
@@ -974,16 +974,16 @@
         </template>
 
     # src/components/vue3701/CompChild1.vue  수정
-        <style scoped>
-            .main { border:solid 1px black; background-color:yellow; }
-        </style>
-        <template>
-            <div class="main">
-                {{msg}}
-                <child11 />
-                {{msg}}
-            </div>
-        </template>
+      <style scoped>
+          .main { border:solid 1px black; background-color:yellow; }
+      </style>
+      <template>
+          <div class="main">
+              {{msg}}
+              <child11 />
+              {{msg}}
+          </div>
+      </template>
 
 
 
