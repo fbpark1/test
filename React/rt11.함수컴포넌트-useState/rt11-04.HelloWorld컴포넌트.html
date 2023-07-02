@@ -54,6 +54,84 @@
     </xmp>
     <hr />
 
-    <div id="app">요기에</div>
+    <div id="app">
+      <HelloWorldContainer>
+
+      </HelloWorldContainer>
+    </div>
   </body>
 </html>
+
+
+<script src="https://unpkg.com/@babel/standalone/babel.js"
+  crossorigin="anonymous">
+    /* 자바스크립트로 컴파일러. ES6 ==> ES5, JSX ==> ES5  */
+  </script>
+<script src="http://unpkg.com/react@17/umd/react.development.js"
+  crossorigin="anonymous">
+    /* import React, { Component, PureComponent } from 'react' */
+  </script>
+<script src="http://unpkg.com/react-dom@17/umd/react-dom.development.js"
+  crossorigin="anonymous">
+    /* import ReactDOM from 'react-dom' */
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.js"
+  crossorigin="anonymous">
+  </script>
+<script type="text/babel">
+
+  const { useState, useEffect, useRef, useCallback, useMemo, useReducer, Fragment } = React;
+
+  // id="app" 인 태그 에 아래에서 만든 컴포넌트를 화면에 붙이시오
+  // ReactDOM.render( 인자1, 인자2 )
+  ReactDOM.render(<HelloWorldContainer />, document.getElementById('app'));
+
+
+  // 부모 컴포넌트 HelloWorldContainer 생성
+  function HelloWorldContainer({ ...props }) {
+    //const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
+    // const helloworlds =
+    //   helloworlds &&
+    //   helloworlds.length > 0 &&
+    //   helloworlds.map((value, index, array) => {
+    //     return (<HelloWorld index={value}></HelloWorld>)
+    //   })
+    // 변수명으로 따로 빼는게 debugger걸기 편하고 초반에 알아보기 쉬움
+    const helloworlds = [1, 2, 3, 4].map((value, index, array) => {
+      return (<HelloWorld index={value}></HelloWorld>)
+    })
+
+    const callback = useCallback((param) => {
+      // state 변경
+    }, [/* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술  */]);
+
+
+    return (
+      <Fragment>
+        {helloworlds /*대신 변수명으로 만든 코드 붙여넣기 해도 된다고?*/}
+      </Fragment>
+    );
+  }
+
+
+
+  // 자식 컴포넌트 HelloWorld 생성
+  function HelloWorld({ index }) {
+    const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
+
+
+    const handler = (e) => {
+      console.log(e.target);
+      debugger;
+      //
+    };
+
+
+    return (
+      <div>
+        Hello, react world! {index}
+      </div>
+    );
+  }
+
+</script>

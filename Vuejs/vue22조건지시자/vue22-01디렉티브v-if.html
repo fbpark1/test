@@ -146,7 +146,7 @@
         } else {
           this.awesome = true;
         }
-      }
+      } // this.$data.awesome = !this.$data.awesome;과 같은 내용
     },
   });
 
@@ -160,9 +160,13 @@
     methods: {
       /* 이벤트 핸들러 등록 + 일반 함수 */
       clickBind(e) {
-        this.$data.type = this.$data.type + 1;
         console.log(this.$data.type);
-      }
+
+        this.$data.type = this.$data.type + 1;
+        if (this.$data.type >= 4) {
+          this.$data.type = 0;
+        }
+      } //this.$data.type = (this.$data.type + 1) % 4;과 같은 내용
     },
   });
 </script>

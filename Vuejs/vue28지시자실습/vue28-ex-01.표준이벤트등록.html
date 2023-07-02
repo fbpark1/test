@@ -232,8 +232,18 @@
       //문제1
       imageclick(e) {
         console.log(e.target);
+
+        // 1. 클릭된 태그의 href 속성 값을 가져온다.
+        //   ==> event.target.href   # a 태그의 href 속성값
+        //   ==> event.target.value  # input 태그의 value 속성값
         const href = e.target.href;
+
+        // 2. id = "img2" 의 src 에 1번에서 얻은 href의 값을 넣는다.
+        //   ==> img 태그의 src 속성에 데이터 바인딩을 하려고 한다
+        //       어떤 지시자를 사용하면 될까 ?
         this.$data.img_image3 = href;
+
+        // 3. a 태그의 redirect 기능을 취소하시오.
         e.stopPropagation();
         e.preventDefault(); // 둘 다 쓸것(나중에 알게 되면 하나만?)
       },
@@ -241,6 +251,7 @@
       imageover(e) {
         console.log(e.target);
 
+        // 이벤트를 발생시킨 img 태그의 id 속성값 구하기.
         const id = e.target.id;
 
         if (id === 'but1') {
@@ -271,6 +282,7 @@
       imageout(e) {
         console.log(e.target);
 
+        // 이벤트를 발생시킨 img 태그의 id 속성값 구하기.
         const id = e.target.id;
 
         if (id === 'but1') {

@@ -388,10 +388,10 @@
 
       doneToggle(id) { //필터(변경 전 후 갯수 다름) 또는 맵(변경 전후 같음)
         debugger;
+        // 복제 후 할당 처리 방식
         //1.새로운 배열 만들기: const newarr정의
         //2.this.$data.todoItems에 새로운 배열 map으로 할당하기
         const newarr = this.$data.todoItems.map((value, index, array) => {
-          console.log(value);
 
           if (value.id === id) {
             value.done = !value.done;
@@ -406,10 +406,12 @@
         window.event.stopPropagation();
         window.event.preventDefault();
         //0.이벤트 버블링(자식-부모요소 계속 이벤트 걸림)을 막기 위해 html에서 v-on:click.stop(추가)="removeTodo"
+        // 이벤트 취소
+        // window.event.stopPropagation();
+        // window.event.preventDefault();
         //1.새로운 배열 필터(복사본) 만들기: const arrDelete정의
         //2. value === id로 필터링 조건 확인
         const arrDelete = this.$data.todoItems.filter((value, index, array) => {
-          console.log(value);
 
           if (value.id === id) {
             return false; // 조건에 해당되는것을 거짓으로=보여지는 화면에서 삭제
@@ -442,7 +444,7 @@
           if (pvalue > cvalue)
             return pvalue;
           return cvalue;
-        }, 0); // 숫자의 초기값으로 0 설정
+        }, 0); // 숫자의 초기값으로 0 설정: pvalue=초기값, cvalue=현재값
 
         //새로 추가할 객체
         const newobj =  {

@@ -24,7 +24,7 @@ export default {
       debugger;
       console.log(param1, param2);
       this.$data.mesg = `param1=${param1} param2=${param2}`;
-    },
+    },  // 현재(this) data에 있는 mesg에 printText(매개변수1, 매개변수2)를 대입한다
 
     /* 이벤트 핸들러 등록 + 일반 함수 */
     /* vuex 를 사용하는 경우

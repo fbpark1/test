@@ -27,7 +27,7 @@ button {
     <TodoList
       v-bind:todoItems="todoItems"
       v-on:doneToggle="doneToggle"
-      v-on:removeToggle="removeToggle"
+      v-on:removeTodo="removeTodo"
     >
     </TodoList>
 
@@ -63,14 +63,23 @@ export default {
   methods: {
     clearAll(e) {
       console.log(e.target);
+      this.$data.todoItems = []; //빈 배열로 만들기(초기화)
     },
     addTodo(e) {
       console.log(e.target);
     },
     doneToggle(e, id) {
       console.log(id);
-    },
-    removeToggle(id) {
+      // 복제 후 할당 처리 방식.
+      // 1. 새로운 배열 만들기. map 사용
+      // 2. this.$data.todoItems 에 새로운 배열 할당하기
+      const newarr = this.$data.todoItems.map((value, index, array) => {
+        if (value.id === id) value.done = !value.done;
+        return value;
+      });
+      this.$data.todoItems = newarr;
+    }, // 현재(this) data의 todoItems에 newarr을 대입한다
+    removeTodo(id) {
       console.log(id);
     },
     /* 이벤트 핸들러 등록 + 일반 함수 */

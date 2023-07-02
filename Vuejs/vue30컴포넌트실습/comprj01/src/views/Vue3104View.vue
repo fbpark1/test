@@ -6,7 +6,7 @@
       <button v-on:click="clickAddBox">박스 추가</button>
     </p>
     <p>
-      <b v-for="(val, i) in arr" v-bind:key="i">
+      <b v-for="(val, i) in arr" v-bind:key="i"> <!--변수명, 인덱스 in 반복횟수(해당 배열의 요소만큼) + 변수를 구분할 수 있는 키-->
         {{ val }}
         <Vue3104Counter v-bind:num="val"></Vue3104Counter>
       </b>
@@ -23,11 +23,17 @@ export default {
   props: [],
   data() {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
-    return { arr: [1, 2, 3, 4] };
+    return { 
+      arr: [1, 2, 3, 4] 
+    };
   },
   //template: ``,
   methods: {
-    clickAddBox() {},
+    clickAddBox(e) {
+      console.log(e.target);
+      this.$data.arr.push(this.$data.arr.length + 1);
+      // 현재(this) data에 있는 arr[]에 .push();로 배열 요소 추가
+    },
 
     /* 이벤트 핸들러 등록 + 일반 함수 */
     /* vuex 를 사용하는 경우
