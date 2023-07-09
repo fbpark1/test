@@ -644,10 +644,10 @@
     |   |-- logo512.png
     |   |-- manifest.json
     |   `-- robots.txt
-    |-- src                      # 소스 코드 폴더
+    |-- src                      # 소스 코드 폴더(강사님 추천 방식/ redux사용 기준)
     |   |-- common (공통)
     |   |-- components (공통 프리젠테이션 컴포넌트)
-    |   |-- containers (컨테이너 컴포넌트)
+    |   |-- containers (컨테이너 컴포넌트 (*서로 연관성이 없어 복사-붙여넣기 쉽도록/ 강사님 추천))
     |   |   |-- 컨테이너컴포넌트1
     |   |   |   |-- components   (컨테이너컴포넌트1 에서만 사용되는 프리젠테이션 컴포넌트 폴더)
     |   |   |   |-- action.js    (액션상수,액션함수 정의)
@@ -666,11 +666,11 @@
     |   |        `-- 컨테이너컴포넌트2.css   (컨테이너컴포넌트2 에서만 사용되는 css 파일)
     |   |-- constant (상수)
     |   |-- models (데이터 모델 변수, 타입)
-    |   |-- pages (페이지 컴포넌트)
+    |   |-- pages (페이지 컴포넌트=> 라우팅 처리 *수업시간에 강사님이 수정함. 맞는지?)
     |   |   `-- index.js
-    |   |-- reducers (리듀서)
+    |   |-- reducers (리듀서=여러개의 리듀스들을 모아놓는 곳?)
     |   |   `-- index.js
-    |   |-- store (라우팅)
+    |   |-- store (스토어 *수업시간에 강사님이 수정함. 맞는지?)
     |   |   `-- index.js
     |   |-- utils (유틸리티 모듈)
     |   |-- App.css
@@ -722,7 +722,7 @@
 
         6-2. 서버 시작
         $ ls                # package.json 파일이 보이는지 확인
-        $ npm run start     # package.json 보이면 서버 실행
+        $ npm run start     # package.json 보이면 서버 실행 (* 실행시 오류: package.json에서 "prettier": "2.8.8"로 낮춤)
 
         Compiled successfully!
 
