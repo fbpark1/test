@@ -133,3 +133,105 @@
     </div>
   </body>
 </html>
+
+
+<script src="https://unpkg.com/@babel/standalone/babel.js"
+  crossorigin="anonymous">
+    /* 자바스크립트로 컴파일러. ES6 ==> ES5, JSX ==> ES5  */
+  </script>
+<script src="http://unpkg.com/react@17/umd/react.development.js"
+  crossorigin="anonymous">
+    /* import React, { Component, PureComponent } from 'react' */
+  </script>
+<script src="http://unpkg.com/react-dom@17/umd/react-dom.development.js"
+  crossorigin="anonymous">
+    /* import ReactDOM from 'react-dom' */
+  </script>
+<script type="text/babel">
+
+  const { useState, useEffect, useRef, useCallback, useMemo, useReducer, Fragment } = React;
+
+  // id="app" 인 태그 에 아래에서 만든 컴포넌트를 화면에 붙이시오
+  // ReactDOM.render( 인자1, 인자2 )
+  ReactDOM.render(<CardContainer />, document.getElementById('app'));
+
+  // const {...props} = props;
+  function CardContainer({ ...props }) {
+    // useState 를 사용한 컴포넌트의 상태값 설정
+    /*const [colors, setColors] = useState([
+      { id: '1', color: "#ff6663" },
+      { id: '2', color: "#ffa737" },
+    ]);
+
+    const cardList = colors && colors.length > 0 && colors.map((item, index, array) => {
+      return (
+        <Card key={item.id} color={item.color}> </Card>
+      );
+    });*/
+
+    const [colors, setColors] = useState(["#ff6663", "#ffa737"]);
+
+    const cards = ["#ff6663", "#ffa737"].map((item, index, array) => {
+      return (<Card key={item + index} color={item}> </Card>);
+    }); // Array.map();으로 반복문 가능
+    // index는 배열 요소 추가시 변하기 때문에 권장하진 않음
+
+
+    // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
+    return (
+      <div>
+        card conatiner
+        {/*<Card color={"#ff6663"}></Card>*/}
+        {/*<Card color={"#ffa737"}></Card>*/}
+
+        {/*cardList*/}
+
+        {cards}
+      </div>
+    );
+  }
+
+
+  // <CardContainer />에 있는 <Card />의 color 속성 받아오기=props
+  // const {...props} = props;
+  function Card({ color }) {
+    // useState 를 사용한 컴포넌트의 상태값 설정
+    const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
+
+
+    // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
+    return (
+      <div className="card">
+        <Square color={color}></Square>
+        <Label color={color}></Label>
+      </div>
+    );
+  }
+
+
+  // <Card />에 있는 color 속성 받아오기1=props
+  function Square({ color }) {
+    let style = { backgroundColor: color }
+    //변경(let)할 css속성을 style변수에 입력
+
+    // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
+    return (
+      <div className="square" style={style}>
+      </div>
+    );
+  }
+
+  // <Card />에 있는 color 속성 받아오기2=props
+  function Label({ color }) {
+
+
+    // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
+    return (
+      <div className="label">
+        {color}
+      </div>
+    );
+  }
+
+
+</script>

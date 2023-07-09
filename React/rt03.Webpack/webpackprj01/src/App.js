@@ -1,21 +1,22 @@
+
 import './App.css';
-import Header from './Header.js';
-import Footer from './Footer.js';
+import Header from './Header';
+import Footer from './Footer';
 
 function App() {
   return (
     <div>
-      {/*header.js*/}
+      {/* Header.js */}
       <Header></Header>
       <section id="page1" data-role="page">
         <div class="content" data-role="content">
           컨텐츠
         </div>
       </section>
-      {/*footer.js*/}
+      {/* Footer.js */}
       <Footer></Footer>
     </div>
   );
 }
 
-export default App; // default가 있으면 {}블록 없이, 그냥 import/export면 {이름}
+export default App;

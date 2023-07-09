@@ -48,7 +48,8 @@
                 <hr />
             </div>
 
-        도전. 부모의 callback 메서드 호출 기능을 추가한다.
+        도전. HelloReact 컴포넌트에 이벤트 핸들러 추가
+              부모의 callback 메서드 호출 기능을 추가한다.
             <hr />
             <button onClick={????}> 부모의 callback 메서드 호출</button>
 
@@ -64,7 +65,7 @@
     <hr>
 
     <div id="app">
-      <HelloContainer></HelloContainer>
+      요기에
     </div>
   </body>
 
@@ -97,59 +98,58 @@
   // 단축키 rfchtml
   // const {...props} = props;
   function HelloContainer({ ...props }) {
-
-    // useState 를 사용한 컴포넌트의 상태값 설정: arr [상태값을 저장할 변수명, 상태값을 변경할 변수명]
-    const [mesgOfProps, setMesgOfProps] = useState('Hello, Props!');
+    // useState 를 사용한 컴포넌트의 상태값 설정
+    const [mesgOfProps, setMesgOfProps] = useState("Hello, Props!!!"); // 상태값이 기본타입인 경우
 
     // callback 메서드 작성. callback 메서드는 부모의 공유 상태값을 변경하기 위해서 사용된다.
-    const callback = useCallback((param) => {
-      // state 변경방법 (해당 함수 호출+파라미터 들어감을 표시)
-      setMesgOfProps(param);
-    }, [
-      /* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술  */
-      mesgOfProps
-    ]
-    ); // 코드를 바꿨는데 반영이 안된다? 연관배열을 누락했을수도...
+    const callback = useCallback(
+      (param) => {
+        debugger;
+        // state 변경
+        setMesgOfProps(param);
+      },
+      [/* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술  */
+        mesgOfProps
+      ]
+    );
 
-
+    // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
     return (
       <div>
         <HelloReact mesgOfProps={mesgOfProps} callback={callback}>
         </HelloReact>
       </div>
-    ); //부모 컴포넌트애서 mesgOfProps 초기값 설정
+    );
   }
 
-
+  // const { mesgOfProps, callback } = props;
   function HelloReact({ mesgOfProps, callback }) {
     // useState 를 사용한 컴포넌트의 상태값 설정
-    // mesgOfProps는 부모 컴포넌트에서 받아오므로 설정할 필요 없음
-    // 부모 컴포넌트에서 만든 함수(callback();) 자체를 파라미터 자리에 넣을 수 있다
-    const [mesgOfState, setMesgOfState] = useState('Hello, State!');
+    const [mesgOfState, setMesgOfState] = useState('Hello, State!!!'); // 상태값이 기본타입인 경우
 
     // 이벤트 핸들러 작성.
     const handler = (e) => {
       // 이벤트 핸들러는 화살표 함수로 만든다
       console.log(e.target);
-      console.log(mesgOfProps);
-      callback('change state!'); // 버튼 클릭시 부모 스테이트의 내용 변경함
-      // setMesgOfProps(param); 의 내용이 작동됨
-      console.log(HelloContainer);
+
+      debugger;
+
+      // 부모의 콜백 메서드 호출하기.
+      callback('fadfi ofdkfla');
     };
 
     // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
     return (
       <div>
-        <div>
-          도전1. Hello, React!
-          <br />
-          도전2. {mesgOfState /*HelloReact에서 state 정의*/}
-          <br />
-          도전3. {mesgOfProps /*HelloContainer에서 state 정의 후 props로 받음*/}
-        </div>
-        {/*도전: 자식 컴포넌트에서 이벤트 추가하여 부모 컴포넌트의 mesgOfProps의 내용 바꾸기*/}
+        도전1. Hello, React!!!
+        <br />
+        도전2. {mesgOfState}
+        <br />
+        도전3. {mesgOfProps}
+        <hr />
         <button onClick={handler}> 부모의 callback 메서드 호출</button>
       </div>
     );
   }
+
 </script>

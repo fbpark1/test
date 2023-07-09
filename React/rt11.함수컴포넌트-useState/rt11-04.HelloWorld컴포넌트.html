@@ -54,11 +54,7 @@
     </xmp>
     <hr />
 
-    <div id="app">
-      <HelloWorldContainer>
-
-      </HelloWorldContainer>
-    </div>
+    <div id="app">요기에</div>
   </body>
 </html>
 
@@ -86,52 +82,67 @@
   // ReactDOM.render( 인자1, 인자2 )
   ReactDOM.render(<HelloWorldContainer />, document.getElementById('app'));
 
-
-  // 부모 컴포넌트 HelloWorldContainer 생성
+  // 단축키 rfchtml
+  // const {...props} = props;
   function HelloWorldContainer({ ...props }) {
-    //const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
-    // const helloworlds =
-    //   helloworlds &&
-    //   helloworlds.length > 0 &&
-    //   helloworlds.map((value, index, array) => {
-    //     return (<HelloWorld index={value}></HelloWorld>)
-    //   })
-    // 변수명으로 따로 빼는게 debugger걸기 편하고 초반에 알아보기 쉬움
-    const helloworlds = [1, 2, 3, 4].map((value, index, array) => {
-      return (<HelloWorld index={value}></HelloWorld>)
-    })
+    // useState 를 사용한 컴포넌트의 상태값 설정
+    const [변수명, set변수명] = useState([1, 2, 3, 4]); // 상태값이 기본타입인 경우
 
+    const helloworlds = 변수명 &&
+      변수명.length > 0 &&
+      변수명.map((value, index, array) => {
+        return (<HelloWorld index={value}></HelloWorld>);
+      });
+
+    return (
+      <Fragment>
+        { helloworlds }
+      </Fragment  >
+    );
+  }
+
+  // const {index} = props;
+  function HelloWorld({ index }) {
+    // useState 를 사용한 컴포넌트의 상태값 설정
+    const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
+
+    // ref 만들기.
+    // const refInput = useRef();
+
+    // refIsMounted는 생명주기의 마운트와 업데이트를 구분하기 위한 ref
+    const refIsMounted = useRef(false);
+    useEffect(() => {
+      if (refIsMounted.current) {
+        // 업데이트 될 때마다 실행됨. 여러번. state 가 변경될 때마다
+        // console.log('HelloWorld >> componentDidUpdate');
+      }
+      else {
+        // 마운트 완료 후에 실행됨. 한번만. focus 줄때
+        // console.log('HelloWorld >> componentDidMount');
+        refIsMounted.current = true;
+      }
+      return () => {
+        // 언마운트 직전에 한번만 실행됨.
+        // console.log('HelloWorld >> componentWillUmount');
+      };
+    }, [/* 연관배열: 메서드와 연관되는 상태(변수)명들을 기술 */]);
+
+    // callback 메서드 작성. callback 메서드는 부모의 공유 상태값을 변경하기 위해서 사용된다.
     const callback = useCallback((param) => {
       // state 변경
     }, [/* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술  */]);
 
-
-    return (
-      <Fragment>
-        {helloworlds /*대신 변수명으로 만든 코드 붙여넣기 해도 된다고?*/}
-      </Fragment>
-    );
-  }
-
-
-
-  // 자식 컴포넌트 HelloWorld 생성
-  function HelloWorld({ index }) {
-    const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
-
-
+    // 이벤트 핸들러 작성.
     const handler = (e) => {
+      // 이벤트 핸들러는 화살표 함수로 만든다
       console.log(e.target);
-      debugger;
-      //
     };
 
-
+    // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
     return (
       <div>
-        Hello, react world! {index}
+        Hello, react world!!! {index} - component
       </div>
     );
   }
-
 </script>
