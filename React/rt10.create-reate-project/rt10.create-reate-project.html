@@ -42,10 +42,10 @@
         v16.18.1
 
         $ npm -v                           #  npm 버전 확인
-        9.5.0
+        9.8.0
 
         $ npx -v                           #  npx(=npm extension) 버전 확인
-        9.5.0
+        9.8.0
 
         $ npm install -g npm@latest        #  npm 최신 버전 설치
 
@@ -80,13 +80,13 @@
         $ ls               # package.json 파일이 보이는지 확인
         node_modules/  package.json  package-lock.json public/  README.md  src/
 
-        $ npm help // 도움말 보기
-        $ npm help install // 사이트로 이동
+        $ npm help
+        $ npm help install
         $ npm install -h
 
         $ npm help ls
-        $ npm ls -h // h명령어 뒤에 올 수 있는 옵션들
-        $ npm ls react       # 설치된 react 버전 및 의존 관계 확인 (라이브러리 아무거나 설치시 충돌 가능성=버전 맞추기)
+        $ npm ls -h
+        $ npm ls react       # 설치된 react 버전 및 의존 관계 확인
         ├─┬ @testing-library/react@13.4.0
         │ └── react@18.2.0 deduped
         ├─┬ react-dom@18.2.0
@@ -99,18 +99,18 @@
 
     step 1-03. 터미널에서 실행 중인 프로세스 중지
         "ctrl + c" 눌러 실행된 서버를 중지한다
-        모든 OS 에 동일 // + clear 입력시 기존 로그 다 지워짐
+        모든 OS 에 동일
 
 
     step 1-04. 프로젝트 소스 커밋 및 푸시
         $ pwd           # 현재 작업하는 폴더 위치 확인
         $ ls            # package.json 파일이 보이는지 확인
-        $ git status    # 파일의 추가, 변경, 삭제 확인 // 추가된 폴더는 현재 관리대상이 아니어서 인식 불가=신규 폴더 추가 필요
+        $ git status    # 파일의 추가, 변경, 삭제 확인
         $ git add -AN   # 신규 파일 추가
-        $ git status    # 파일의 추가, 변경, 삭제 확인 // 다시 확인하면 git에서 인식하는 파일 범위 수정됨
+        $ git status    # 파일의 추가, 변경, 삭제 확인
         $ git commit -a -m '프로젝트 시작'      # 파일 commit
         $ git status    # 파일의 추가, 변경, 삭제 확인
-        $ git push       # // 특정 브랜치로 업데이트시 뒤에 이름 입력. main뿐일때는 origin(=main)생략 가능
+        $ git push      #
 
         github 사이트에서 소스가 올라갔는지 확인한다.
 
@@ -133,17 +133,6 @@
         https://www.npmjs.com/package/styled-components
 
         $ npm install --save styled-components @types/styled-components
-        /* 설치 안되고 오류남
-        $ npm install --save styled-components @types/styled-component
-        npm ERR! code E404
-        npm ERR! 404 Not Found - GET https://registry.npmjs.org/@types%2fstyled-component - Not found
-        npm ERR! 404
-        npm ERR! 404 '@types/styled-component@*' is not in this registry.
-        npm ERR! 404
-        npm ERR! 404 Note that you can also install from a
-        npm ERR! 404 tarball, folder, http url, or git url.
-
-        npm ERR! A complete log of this run can be found in: C:\Users\user\AppData\Local\npm-cache\_logs\2023-07-09T07_24_34_271Z-debug-0.log*/
 
 
     step 1-23. 리액트 라우터 설치(필수)
@@ -178,9 +167,9 @@
         $ npm install --save axios
 
 
-    step 1-27. immer 설치(필수) *현재 가장 추천하는 라이브러리
+    step 1-27. immer 설치(필수)
         immer : 리덕스 store state 를 불변 객체(읽기 전용)로 처리할 때 사용되는 라이브러리
-        ===> 복제 후 할당을 처리하는 라이브러리
+        ===> 리덕스에서 복제 후 할당을 처리하는 라이브러리
 
         Create the next immutable state tree by simply modifying the current tree
         https://www.npmjs.com/package/immer
@@ -192,8 +181,9 @@
     @ 디자인 라이브러리 설치
     @@@@@@@@@@@@@@@@@@@@@@@@@
     step 1-31. install material-ui
-        안드로이드에서 사용하는 UI 기능과 디자인을 제공하는 라이브러리 (*버전 충돌 가능성/18버전에서 불가하여 생략)
+        안드로이드에서 사용하는 UI 기능과 디자인을 제공하는 라이브러리
         홈페이지 : https://material-ui.com/
+        18 버전에서 버전 충돌 발생.
 
         $ npm install --save  @material-ui/core  @material-ui/icons  @material-ui/pickers  @material-ui/styles
 
@@ -205,20 +195,21 @@
         $ npm install --save semantic-ui-react semantic-ui-css
 
 
-    step 1-33. install Ant Design (*현재 가장 인기있음,figma와 연동 쉬움)
+    step 1-33. install Ant Design
+        피그마의 원리가 사용된다.원자, 분자, 유기체
         홈페이지 : https://ant.design/docs/react/getting-started
 
         $ npm install --save antd
 
 
-    step 1-34. install react-icons (*무료 사용 가능한 기존 아이콘들 모음 / vue는 font awsome라이브러리 사용했음)
+    step 1-34. install react-icons
         Include popular icons in your React projects easily with react-icons,
         https://www.npmjs.com/package/react-icons
 
         $ npm install --save react-icons
 
 
-    step 1-35. install the Bootstrap 4 (*생략)
+    step 1-35. install the Bootstrap 4
         $ npm install --save bootstrap reactstrap
 
 
@@ -226,7 +217,7 @@
     @ 라이브러리 재설치
     @@@@@@@@@@@@@@@@@@@@@@@@@
 
-    step 1-41. package.json 에 있는 라이브러리 재설치 (*현재 패키지 기준으로 node_modules 라이브러리 다시 다운받고 싶을 때)
+    step 1-41. package.json 에 있는 라이브러리 재설치
     $ npm install
 
 
@@ -247,13 +238,13 @@
       $ ls    # build/ 폴더가 보이는지 확인. 있으면 정상
       build/  node_modules/  package.json  package-lock.json  public/  README.md  src/
 
-      nginx 에 배포 테스트 (*서버 업로드 전 로컬 서버에서 확인 필수)
+      nginx 에 배포 테스트
       "build/" 폴더에 파일들을 "nginx폴더/html" 에 복사후에 nginx.exe 를 실행
 
 
     ##################################
     4. 프로젝트 환경 설정
-       소요시간: 15분
+       소요시간: 25분
     ##################################
 
     프로젝트
@@ -286,7 +277,7 @@
     4-1 .babelrc 설정
         babel 설정 파일.
 
-        babel 모듈 설치 (*3가지 전부/ @붙은건 type script용)
+        babel 모듈 설치
         https://babeljs.io/docs/en/babel-preset-env-standalone
         https://babeljs.io/docs/en/babel-preset-react
         https://webpack.js.org/loaders/
@@ -300,7 +291,7 @@
         $ ls -a   # package.json 파일이 보이는지 확인
         $ touch .babelrc      # .babelrc 파일 생성
         $ echo -e "{\n}" > .babelrc
-        $ cat .babelrc (*내용 확인)
+        $ cat .babelrc
 
         # .babelrc 파일을 열고 아래 내용을 추가한다.
         {
@@ -332,15 +323,15 @@
 
     4-2. 포트 변경 설정
         react는 기본적으로 포트 3000 을 사용하는데 다른 포트로 변경할 수 있다.
-        기본 포트 3000 대신 15109 포트를 사용하도록 설정 (.env 파일 사용: node.js로 만든 것들 모두 설정 가능)
+        기본 포트 3000 대신 15109 포트를 사용하도록 설정
 
         # .env 파일을 프로젝트 루트에 만들기
         $ pwd     # 현재 작업하는 폴더 위치 확인
         $ ls -a   # package.json 파일이 보이는지 확인
         $ touch .env    # .env 파일 생성
         $ ls -a   # .env 파일이 보이는지 확인
-        $ echo -e "SKIP_PREFLIGHT_CHECK=true \nPORT=15109" > .env (*포트 번호 설정 변경)
-        $ cat .env (*내용 확인)
+        $ echo -e "SKIP_PREFLIGHT_CHECK=true \nPORT=15109" > .env
+        $ cat .env
 
         # .env  파일에 아래 내용 추가
         $ cat .env
@@ -362,13 +353,14 @@
             . git 커밋할 때
         정의된 규칙에 따라 코드의 형식을 자동으로 수정한다.
 
-        prettier : Prettier 모듈
+        prettier :
+        prettier 모듈
         eslint-config-react: react 프로젝트에 맞춰진 ESLint 규칙을 추가합니다.
         eslint-plugin-prettier: 코드 코맷할 때 Prettier를 사용하게 만드는 규칙을 추가합니다.
         eslint-config-prettier: Prettier와 충돌할 설정들을 비활성화합니다.
 
-        # prettier 모듈 설치 (*개발 전용이라서 -dev로 설치)
-        $ npm install --save-dev prettier \
+        # prettier 모듈 설치
+        $ npm install --save-dev prettier@2.8.8 \
                                  eslint-config-react \
                                  eslint-plugin-prettier \
                                  eslint-config-prettier
@@ -398,11 +390,10 @@
             quoteProps: 'as-needed',
             endOfLine: 'crlf'
         };
-        (* 설정 파일이 .rc(ex.바벨)가 아니라 .js일때는 앞에 module.exports = {} 가 필요함/ .js로 만들면 주석 작성이 가능)
 
 
     4-4. eslint 모듈
-        ESlint는 문법 오류를 잡아내기 위해 사용되는 모듈 입니다.
+        ESlint는 코드의 문법 오류를 잡아내기 위해 사용되는 모듈 입니다.
         오류 수정은 Prettier 로 한다.
 
         airbnb ESLint 규칙을 사용하려면 아래 5개의 패키지들은 필수로 설치해야 합니다.
@@ -461,7 +452,7 @@
                 pnpm
 
 
-        # 방법2. npm install 을 사용하는 설정 방식(추천 / *수업때 이걸로 진행)
+        # 방법2. npm install 을 사용하는 설정 방식(추천)
         $ npm install --save-dev eslint  \
                                  eslint-plugin-import  \
                                  eslint-plugin-jsx-a11y  \
@@ -585,7 +576,6 @@
     4-7. commit 전에 자동으로 prettier 적용하기
         githook 은 git 에 특정 이벤트(커밋, 푸시 등)를 감지하여
         이벤트를 실행하기 전에 특정 동작을 수행할 수 있도록 도와주는 플러그인 입니다.
-        (* vue는 자동이지만 react는 직접 설정 필요/ 뷰의 패키지 제이슨에도 동일함)
 
         husky와 lint-staged의 역할은 다음과 같다.
         . husky: packages.json 파일에서 githook를 사용할 수 있게 해준다.
@@ -593,7 +583,7 @@
 
         lint-staged 와 husky를 사용하여 git 이벤트에 Prettier 명령어를 연동 설정.
 
-        githook 관련 플러그인 설치하기 (*개발자용으로 설치: -dev, 배포시 사용 안함)
+        githook 관련 플러그인 설치하기
         $ npm install --save-dev  husky  lint-staged
 
         packages.json 파일 맨 아래에 내용 추가
@@ -608,7 +598,7 @@
           },
           "lint-staged": {
               "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-                  "prettier --write",
+                  "prettier --write" /* ESLint 룰에 맞게 코드 수정 */,
                   "git add"
               ]
           }
@@ -619,8 +609,8 @@
     4-9. 프로젝트 소스 커밋
         $ pwd                                   # 현재 작업 디렉토리 확인
         $ ls                                    # package.json 파일이 보이는지 확인
-        $ git add -AN                           # 신규 파일 추가 추가 (*새 파일들이 tracked 되도록)
-        $ git commit -a -m '프로젝트 설정'      # 파일 commit (*-a:all files)
+        $ git add -AN                           # 신규 파일 추가 추가
+        $ git commit -a -m '프로젝트 설정'      # 파일 commit
         $ git push                              #
 
 
@@ -644,33 +634,31 @@
     |   |-- logo512.png
     |   |-- manifest.json
     |   `-- robots.txt
-    |-- src                      # 소스 코드 폴더(강사님 추천 방식/ redux사용 기준)
+    |-- src                      # 소스 코드 폴더
     |   |-- common (공통)
     |   |-- components (공통 프리젠테이션 컴포넌트)
-    |   |-- containers (컨테이너 컴포넌트 (*서로 연관성이 없어 복사-붙여넣기 쉽도록/ 강사님 추천))
+    |   |-- containers (컨테이너 컴포넌트)
     |   |   |-- 컨테이너컴포넌트1
     |   |   |   |-- components   (컨테이너컴포넌트1 에서만 사용되는 프리젠테이션 컴포넌트 폴더)
     |   |   |   |-- action.js    (액션상수,액션함수 정의)
     |   |   |   |-- api.js       (외부 API 호출)
     |   |   |   |-- saga.js      (외부 API 호출 saga)
     |   |   |   |-- reducer.js   (리덕스 리듀서)
-    |   |   |   |-- 컨테이너컴포넌트1.js     (컴포넌트 UI )
-    |   |        `-- 컨테이너컴포넌트1.css   (컨테이너컴포넌트1 에서만 사용되는 css 파일)
+    |   |   |   `-- 컨테이너컴포넌트1.js     (컴포넌트 UI )
     |   |   `-- 컨테이너컴포넌트2
     |   |        |-- components   (컨테이너컴포넌트2 에서만 사용되는 프리젠테이션 컴포넌트 폴더)
     |   |        |-- action.js    (액션상수,액션함수 정의)
     |   |        |-- api.js       (외부 API 호출)
     |   |        |-- saga.js      (외부 API 호출 saga)
     |   |        |-- reducer.js   (리덕스 리듀서)
-    |   |        |-- 컨테이너컴포넌트2.js    (컴포넌트 UI )
-    |   |        `-- 컨테이너컴포넌트2.css   (컨테이너컴포넌트2 에서만 사용되는 css 파일)
+    |   |        `-- 컨테이너컴포넌트2.js    (컴포넌트 UI ))
     |   |-- constant (상수)
     |   |-- models (데이터 모델 변수, 타입)
-    |   |-- pages (페이지 컴포넌트=> 라우팅 처리 *수업시간에 강사님이 수정함. 맞는지?)
+    |   |-- pages (페이지 컴포넌트==> 라우팅 처리)
     |   |   `-- index.js
-    |   |-- reducers (리듀서=여러개의 리듀스들을 모아놓는 곳?)
+    |   |-- reducers (리듀서)
     |   |   `-- index.js
-    |   |-- store (스토어 *수업시간에 강사님이 수정함. 맞는지?)
+    |   |-- store (redux store)
     |   |   `-- index.js
     |   |-- utils (유틸리티 모듈)
     |   |-- App.css
@@ -722,7 +710,7 @@
 
         6-2. 서버 시작
         $ ls                # package.json 파일이 보이는지 확인
-        $ npm run start     # package.json 보이면 서버 실행 (* 실행시 오류: package.json에서 "prettier": "2.8.8"로 낮춤)
+        $ npm run start     # package.json 보이면 서버 실행
 
         Compiled successfully!
 
